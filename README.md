@@ -129,7 +129,7 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | Question | How can we use the `https://www.npmjs.com/` web site?                               |
 |          | _Enter your response here..._                                                       |
 | Question | In JavaScript, how can we **generate a UUID** compliant with RFC4122?               |
-|          | _Enter your response here..._                                                       |
+|          | _https://www.npmjs.com/package/uuid_                                                       |
 | Question | In Node.js, how can we execute a function on a **periodic** basis?                  |
 |          | _Enter your response here..._                                                       |
 | Question | In Node.js, how can we **emit UDP datagrams**?                                      |
