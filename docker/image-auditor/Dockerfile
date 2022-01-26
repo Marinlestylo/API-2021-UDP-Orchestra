@@ -2,4 +2,4 @@ FROM node:16
 
 COPY src /opt/app
 
-CMD ["node", "/opt/app/musician.js"]
+CMD ["node", "/opt/app/auditor.js"]
