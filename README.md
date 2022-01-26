@@ -143,17 +143,17 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | #        | Topic                                                                               |
 | -------- | ----------------------------------------------------------------------------------- |
 | Question | How do we **define and build our own Docker image**?                                |
-|          | _Enter your response here..._                                                       |
+|          | ````docker build -t api/musician .```` au niveau du dockerfile |
 | Question | How can we use the `ENTRYPOINT` statement in our Dockerfile?                        |
-|          | _Enter your response here..._                                                       |
+|          | ```ENTRYPOINT ["node", "/opt/app/musician.js"]``` à la place de CMD|
 | Question | After building our Docker image, how do we use it to **run containers**?            |
-|          | _Enter your response here..._                                                       |
+|          | docker run api/musician flute |
 | Question | How do we get the list of all **running containers**?                               |
-|          | _Enter your response here..._                                                       |
+|          | docker ps |
 | Question | How do we **stop/kill** one running container?                                      |
-|          | _Enter your response here..._                                                       |
+|          | docker kill NameofContainer|
 | Question | How can we check that our running containers are effectively sending UDP datagrams? |
-|          | _Enter your response here..._                                                       |
+|          | We use tcpdump |
 
 ## Task 4: implement an "auditor" Node.js application
 
