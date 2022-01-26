@@ -153,7 +153,7 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | Question | How do we **stop/kill** one running container?                                      |
 |          | docker kill NameofContainer|
 | Question | How can we check that our running containers are effectively sending UDP datagrams? |
-|          | We use tcpdump |
+|          | We dockerise tcmpdump so it has acces to the docker network. With the command ```CMD tcpdump -i eth0 udp and port 9907``` in the dockerfile, it shows all the udp package sent. |
 
 ## Task 4: implement an "auditor" Node.js application
 
@@ -175,7 +175,7 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | #        | Topic                                                                                |
 | -------- | ------------------------------------------------------------------------------------ |
 | Question | How do we validate that the whole system works, once we have built our Docker image? |
-|          | _Enter your response here..._                                                        |
+|          | we have to run the valide.sh script|
 
 ## Constraints
 
