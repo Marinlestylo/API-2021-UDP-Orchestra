@@ -108,34 +108,35 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | Question | How can we represent the system in an **architecture diagram**, which gives information both about the Docker containers, the communication protocols and the commands? |
 |          | _Insert your diagram here..._                                                                                                                                           |
 | Question | Who is going to **send UDP datagrams** and **when**?                                                                                                                    |
-|          | _Enter your response here..._                                                                                                                                           |
+|          | Les musiciens envoie un datagram UDP chaque seconde|
 | Question | Who is going to **listen for UDP datagrams** and what should happen when a datagram is received?                                                                        |
-|          | _Enter your response here..._                                                                                                                                           |
+|          |C'est l'application auditor.js qui écoute les digrammes UDP, et tient à jour un tableau de musicien|
 | Question | What **payload** should we put in the UDP datagrams?                                                                                                                    |
-|          | _Enter your response here..._                                                                                                                                           |
+|          | Chaque musicien envoie le son de son instrument et son uuid |
 | Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures?                |
-|          | _Enter your response here..._                                                                                                                                           |
+|          | Un musicien a un tableau avec le bruit de son instrument et son uuid. L'auditeur à un tableau avec les infos de tous les musiciens (Instrument, uuid, timestamp indiquant la première fois que le musicien a émis, et un timestamp indiquant la dernière fois que ledit musicien à émis). Les musiciens et l'auditeur ont un tableau de correspondance entre les instruments et leur son. Il aurait été mieux de ne pas le dupliquer et de le définir dans un fichier tier mais ce n'est malheuresement pas possible.
+|
 
 ## Task 2: implement a "musician" Node.js application
 
 | #        | Topic                                                                               |
 | -------- | ----------------------------------------------------------------------------------- |
 | Question | In a JavaScript program, if we have an object, how can we **serialize it in JSON**? |
-|          | _Enter your response here..._                                                       |
+|          | ```let data = JSON.stringify(objectWeWantToSerialize);```|
 | Question | What is **npm**?                                                                    |
-|          | _Enter your response here..._                                                       |
+|          | npm est le gestionnaire de packet de Node.js|
 | Question | What is the `npm install` command and what is the purpose of the `--save` flag?     |
-|          | _Enter your response here..._                                                       |
+|          | Cela permet d'installer des dépendances dans le projet et le flag --save permet de les sauvergarder dans le fichier package.json |
 | Question | How can we use the `https://www.npmjs.com/` web site?                               |
-|          | _Enter your response here..._                                                       |
+|          | On peut chercher différents package, et leur doc, dont on aurait besoin et ensuite les importer dans notre projet |
 | Question | In JavaScript, how can we **generate a UUID** compliant with RFC4122?               |
-|          | _https://www.npmjs.com/package/uuid_                                                       |
+|          | En cherchant sur le site précendent, on trouve le package uuid.
 | Question | In Node.js, how can we execute a function on a **periodic** basis?                  |
-|          | _Enter your response here..._                                                       |
+|          | Avec la fonction ```setInterval(function, timeInMs)``` |
 | Question | In Node.js, how can we **emit UDP datagrams**?                                      |
-|          | _Enter your response here..._                                                       |
+|          | ```let socket = dgram.createSocket('udp4');``` then ```socket.send(msg[, offset, length][, port][, address][, callback])``` |
 | Question | In Node.js, how can we **access the command line arguments**?                       |
-|          | _Enter your response here..._                                                       |
+|          | ```process.argv[idOfParam]``` example: ```process.argv[2]``` |
 
 ## Task 3: package the "musician" app in a Docker image
 
@@ -159,15 +160,15 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | #        | Topic                                                                                              |
 | -------- | -------------------------------------------------------------------------------------------------- |
 | Question | With Node.js, how can we listen for UDP datagrams in a multicast group?                            |
-|          | _Enter your response here..._                                                                      |
+|          | ```s.addMembership(PROTOCOL_MULTICAST_ADDRESS);``` |
 | Question | How can we use the `Map` built-in object introduced in ECMAScript 6 to implement a **dictionary**? |
-|          | _Enter your response here..._                                                                      |
+|          | On aurait pu stocker les musiciens dans une map. L'uuid serait la key et le reste des infos serait la value |
 | Question | How can we use the `Moment.js` npm module to help us with **date manipulations** and formatting?   |
-|          | _Enter your response here..._                                                                      |
+|          | Nous n'avons pas utilisé Moment.js. Nous avons utilisé la fonction ```new Date(timestamp)``` car c'était très simple d'utilisation et que nous n'avons rien besoin d'importer |
 | Question | When and how do we **get rid of inactive players**?                                                |
-|          | _Enter your response here..._                                                                      |
+|          | Si ça fait plus de 5 secondes qu'ils n'ont rien émis, les musiciens sont directement remove du tableau de musicien. |
 | Question | How do I implement a **simple TCP server** in Node.js?                                             |
-|          | _Enter your response here..._                                                                      |
+|          | Nous avons utilisé le module ```net```, qui permet de créer facilement un server tcp. ```const server = net.createServer()```, ensuite ```server.listen(TCP_PORT)```. ```server.on('connection', function onConnect(socket){}``` On utilise ensuite le socket passé en paramètre afin de communiquer avec le clien qui nous parle. *DAB*|
 
 ## Task 5: package the "auditor" app in a Docker image
 
