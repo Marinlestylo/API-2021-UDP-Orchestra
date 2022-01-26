@@ -1,10 +1,10 @@
-let musicians = [];
 /*
  * Our application protocol specifies the following default multicast address and port
  */
 
 const PROTOCOL_MULTICAST_ADDRESS = "239.255.22.5";
 const PROTOCOL_PORT = 9907;
+const TCP_PORT = 2205;
 /*
  * We use a standard Node.js module to work with UDP
  */
@@ -17,16 +17,44 @@ var net = require('net');
  * multicast group by thermometers and containing measures
  */
 const s = dgram.createSocket('udp4');
+
 s.bind(PROTOCOL_PORT, function() {
     console.log("Joining multicast group");
     
     s.addMembership(PROTOCOL_MULTICAST_ADDRESS);
 });
 
+const server = net.createServer();
+
+server.listen(TCP_PORT);
+
+server.on('connection', function onConnect() {
+    let msg = [];
+    musicians.forEach(m => {
+        let musician = {
+            uuid: m['uuid'],
+            instrument: m['instrument'],
+            activeSince: new Date(m['activeSince'])
+        }
+        msg.unshift(musician);
+    });
+    s.write(JSON.stringify(msg));
+    s.end();
+});
+
+let musicians = [];
+const allInstruments = {
+    piano: 'ti-ta-ti',
+    trumpet: 'pouet',
+    flute: 'trulu',
+    violin: 'gzi-gzi',
+    drum: 'boum-boum'
+};
+
 function addMusician(noise, id) {
     let musician = {
         uuid: id,
-        instrument : noise,
+        instrument : Object.keys(allInstruments).find(key => allInstruments[key] === noise),
         activeSince: Date.now(),
         lastActivity: Date.now()
     };
@@ -52,7 +80,7 @@ setInterval(() => {
         }
         msg.unshift(musician);
     });
-    console.log(JSON.stringify(msg) + '\n');
+
     return JSON.stringify(msg);
 }, 1000);
 
