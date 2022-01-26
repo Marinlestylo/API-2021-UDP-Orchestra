@@ -10,7 +10,7 @@ const TCP_PORT = 2205;
  */
 const dgram = require('dgram');
 const { count, time } = require('console');
-var net = require('net');
+let net = require('net');
 
 /* 
  * Let's create a datagram socket. We will use it to listen for datagrams published in the
@@ -28,9 +28,13 @@ const server = net.createServer();
 
 server.listen(TCP_PORT);
 
-server.on('connection', function onConnect() {
+server.on('connection', function onConnect(socket) {
     let msg = [];
     musicians.forEach(m => {
+        if (Date.now() - m['lastActivity'] > 5000) {
+            removeMusician(m.index);
+            return;
+        } 
         let musician = {
             uuid: m['uuid'],
             instrument: m['instrument'],
@@ -38,8 +42,8 @@ server.on('connection', function onConnect() {
         }
         msg.unshift(musician);
     });
-    s.write(JSON.stringify(msg));
-    s.end();
+    socket.write(JSON.stringify(msg) + '\n');
+    socket.end();
 });
 
 let musicians = [];
@@ -64,25 +68,6 @@ function addMusician(noise, id) {
 function removeMusician(index){
     musicians.splice(index,1);
 }
-
-setInterval(() => {
-    let msg = [];
-    musicians.forEach(m => {
-        if (Date.now() - m['lastActivity'] > 5000) {
-            removeMusician(m.index);
-            return;
-        }
-
-        let musician = {
-            uuid: m['uuid'],
-            instrument: m['instrument'],
-            date: new Date(m['activeSince'])
-        }
-        msg.unshift(musician);
-    });
-
-    return JSON.stringify(msg);
-}, 1000);
 
 /* 
  * This call back is invoked when a new datagram has arrived.
