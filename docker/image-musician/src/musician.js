@@ -17,13 +17,14 @@ function Musician(instrument) {
         console.log('This instrument does not exist !');
         return;
     }
+    const uniqueId = uuidv4();
     
     // On crée une fonction send qui envoie le son de l'instrument 
     // ainsi qu'un unique id représentant le musicien.
     Musician.prototype.send = function () {
         let musician = {
             noise: allInstruments[instrument],
-            uuid: uuidv4()
+            uuid: uniqueId
         };
         let data = JSON.stringify(musician);
 
