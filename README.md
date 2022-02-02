@@ -175,7 +175,7 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | #        | Topic                                                                                |
 | -------- | ------------------------------------------------------------------------------------ |
 | Question | How do we validate that the whole system works, once we have built our Docker image? |
-|          | we have to run the valide.sh script|
+|          | Nous lançons le script de validation, nous vérifions que le script ne crash pas et que tous les tests passent. Une fois cela fait, cela veut dire que nous méritons la note de 6 🤣. |
 
 ## Constraints
 
