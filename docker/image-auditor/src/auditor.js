@@ -66,7 +66,7 @@ function addMusician(noise, id) {
 }
 
 function removeMusician(index){
-    musicians.splice(index,1);
+    musicians.splice(index,0);
 }
 
 /* 
