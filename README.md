@@ -114,8 +114,7 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | Question | What **payload** should we put in the UDP datagrams?                                                                                                                    |
 |          | Chaque musicien envoie le son de son instrument et son uuid |
 | Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures?                |
-|          | Un musicien a un tableau avec le bruit de son instrument et son uuid. L'auditeur à un tableau avec les infos de tous les musiciens (Instrument, uuid, timestamp indiquant la première fois que le musicien a émis, et un timestamp indiquant la dernière fois que ledit musicien à émis). Les musiciens et l'auditeur ont un tableau de correspondance entre les instruments et leur son. Il aurait été mieux de ne pas le dupliquer et de le définir dans un fichier tier mais ce n'est malheuresement pas possible.
-|
+|          | Un musicien a un tableau avec le bruit de son instrument et son uuid. L'auditeur à un tableau avec les infos de tous les musiciens (Instrument, uuid, timestamp indiquant la première fois que le musicien a émis, et un timestamp indiquant la dernière fois que ledit musicien à émis). Les musiciens et l'auditeur ont un tableau de correspondance entre les instruments et leur son. Il aurait été mieux de ne pas le dupliquer et de le définir dans un fichier tier mais ce n'est malheuresement pas possible.|
 
 ## Task 2: implement a "musician" Node.js application
 
