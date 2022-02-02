@@ -123,13 +123,13 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | Question | In a JavaScript program, if we have an object, how can we **serialize it in JSON**? |
 |          | ```let data = JSON.stringify(objectWeWantToSerialize);```|
 | Question | What is **npm**?                                                                    |
-|          | npm est le gestionnaire de packet de Node.js|
+|          | npm est le gestionnaire de package de Node.js|
 | Question | What is the `npm install` command and what is the purpose of the `--save` flag?     |
 |          | Cela permet d'installer des dépendances dans le projet et le flag --save permet de les sauvergarder dans le fichier package.json |
 | Question | How can we use the `https://www.npmjs.com/` web site?                               |
-|          | On peut chercher différents package, et leur doc, dont on aurait besoin et ensuite les importer dans notre projet |
+|          | On peut chercher différents packages ainsi que leur doc dont on aurait besoin et ensuite les importer dans notre projet |
 | Question | In JavaScript, how can we **generate a UUID** compliant with RFC4122?               |
-|          | En cherchant sur le site précendent, on trouve le package uuid.
+|          | En cherchant sur le site précédent, on trouve le package uuid. Ensuite, const uniqueId = uuidv4();
 | Question | In Node.js, how can we execute a function on a **periodic** basis?                  |
 |          | Avec la fonction ```setInterval(function, timeInMs)``` |
 | Question | In Node.js, how can we **emit UDP datagrams**?                                      |
@@ -152,7 +152,7 @@ Reminder: answer the following questions [here](https://forms.gle/6SM7cu4cYhNsRv
 | Question | How do we **stop/kill** one running container?                                      |
 |          | docker kill NameofContainer|
 | Question | How can we check that our running containers are effectively sending UDP datagrams? |
-|          | We dockerise tcmpdump so it has acces to the docker network. With the command ```CMD tcpdump -i eth0 udp and port 9907``` in the dockerfile, it shows all the udp package sent. |
+|          | Nous avons dockerisé tcpdump pour qu'il ait accès au network de docker. Ensuite, dans le dockerfile nous faisons : CMD tcpdump -i eth0 udp and port 9907. Cela nous permet de voir tous les paquets UDP envoyés. |
 
 ## Task 4: implement an "auditor" Node.js application
 
